@@ -6,13 +6,20 @@ export const Container = styled.div`
   font-family: 'Roboto';
   font-size: 16px;
   font-weight: 700;
-  background-color: ${defaultColors.primary};
+  background-color: ${props => props.color ? defaultColors.stop : defaultColors.primary};
 
-  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
-  padding: 15px 24px;
+  text-align: center;
+
   border-radius: 10px;
   cursor: pointer;
 
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  width: 15vw;
+  min-width: 150px;
+
+  color: ${defaultColors.white};
+
+  // box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 `;
