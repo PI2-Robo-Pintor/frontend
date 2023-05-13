@@ -5,6 +5,7 @@ import Title from './components/Title';
 import HeightInput from './components/HeightInput';
 import SelectComponent from './components/SelectComponent';
 import paintOptions from './utils/paintOptions';
+import InfoComponent from './components/InfoComponent';
 
 function App() {
   const [maxHeight, setMaxHeight] = useState(0);
@@ -18,13 +19,23 @@ function App() {
   }, [maxHeight, minHeight, paintOption])
 
   return (
-    <div >
+    <div>
       <Title title="Altura máxima" />
       <Button text="Iniciar Pintura" onClick={() => console.log("123")} />
       <HeightInput label={'Altura máxima'} value={maxHeight} onChangeValue={setMaxHeight}/>
       <HeightInput label={'Altura mínima'} value={minHeight} onChangeValue={setMinHeight}/>
       <SelectComponent label={'Tipo de pintura'} paintOption={paintOption} paintOptions={paintOptions} onChangeValue={setPaintOption}/>
       <Button text="Parar Pintura" onClick={() => console.log("123")} color={'stop'}/>
+
+      <div className='teste'>
+        <div>
+          <InfoComponent label={'Altura máxima'} value={maxHeight}/>
+          <InfoComponent label={'Altura mínima'} value={minHeight}/>
+          <InfoComponent label={'Tipo de pintura'} value={paintOption}/>
+        </div>
+      </div>
+
+
     </div>
   );
 }

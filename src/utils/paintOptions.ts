@@ -3,15 +3,15 @@ import { SelectType } from "../customTypes/selectTypes";
 const paintOptions: Array<SelectType> = [
     {
         label: 'Alvenaria',
-        value: 'alvenaria'
+        value: 'Alvenaria'
     },
     {
         label: 'Concreto',
-        value: 'concreto'
+        value: 'Concreto'
     },
     {
         label: 'Drywall',
-        value: 'drywall'
+        value: 'Drywall'
     }
 ];
 
