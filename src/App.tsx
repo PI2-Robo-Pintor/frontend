@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+
+import logo from './logo.svg';
 import './App.css';
 import Button from './components/Button';
 import Title from './components/Title';
@@ -8,8 +10,8 @@ import paintOptions from './utils/paintOptions';
 import InfoComponent from './components/InfoComponent';
 
 function App() {
-  const [maxHeight, setMaxHeight] = useState(0);
-  const [minHeight, setMinHeight] = useState(0);
+  const [maxHeight, setMaxHeight] = useState(10);
+  const [minHeight, setMinHeight] = useState(10);
   const [paintOption, setPaintOption] = useState(paintOptions[0].value);
 
   useEffect(() => {

@@ -15,9 +15,11 @@ export const Container = styled.div`
   color: ${defaultColors.primary};
 `;
 
-export const Input = styled.input`
+export const InputBox = styled.input`
+  min-width: 80px;
   width: 15vw;
   max-width: 100px;
+  min-height: 25px;
   height: 5vh;
   max-height: 30px;
 
@@ -26,11 +28,13 @@ export const Input = styled.input`
   text-align: center;
 
   border: 2px solid ${defaultColors.primary};
+  color: ${defaultColors.primary};
   border-radius: 5px;
 
   &:focus {
     outline: none;
   }
+  text-align: center;
 `;
 
 export const Label = styled.label`

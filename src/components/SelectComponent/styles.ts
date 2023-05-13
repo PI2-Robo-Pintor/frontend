@@ -27,6 +27,8 @@ export const Select = styled.select`
   min-width: 90px;
   height: 5vh;
   max-height: 30px;
+  min-height: 25px;
+  margin-right: 44px;
 
   color: ${defaultColors.primary};
   background-color: ${defaultColors.white};

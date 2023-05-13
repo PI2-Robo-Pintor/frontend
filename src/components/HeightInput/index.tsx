@@ -3,24 +3,23 @@ import React from "react";
 import {
   Container,
   Label,
-  Input,
-  ControlButton
+  ControlButton,
+  InputBox,
 } from "./styles";
 
 interface Props {
   label: string;
   value: number;
-  onChangeValue: (value: number) => void;
+  onChangeValue: (value: number) => void
 }
 
 const HeightInput: React.FC<Props> = ({ label, value, onChangeValue }) => (
   <Container>
     <Label>{label}</Label>
-    <Input
-      type="text"
+    <InputBox
       value={value}
-      placeholder="cm"
-      onChange={(e) => onChangeValue(Number(e.target.value))}
+      maxLength={3}
+      onChange={(e) => onChangeValue(+e.target.value)}
     />
     <ControlButton onClick={() => console.log('123')}/>
   </Container>
