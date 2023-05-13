@@ -1,16 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import { Container } from './styles';
 
-const Button = ({ text, onClick }) => (
+interface Props {
+    text: string;
+    onClick: () => void;
+}
+
+const Button: React.FC<Props> = ({ text, onClick }) => (
   <Container onClick={onClick}>
     {text}
   </Container>
 );
 
-Button.propTypes = {
-  text: PropTypes.string.isRequired,
-};
 
 export default Button;

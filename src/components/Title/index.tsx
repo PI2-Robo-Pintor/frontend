@@ -1,16 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import { Container } from './styles';
 
-const Title = ({ title }) => (
+interface Props {
+    title: string;
+}
+
+const Title: React.FC<Props>= ({ title }) => (
   <Container>
     {title}
   </Container>
 );
-
-Title.propTypes = {
-  title: PropTypes.string.isRequired,
-};
 
 export default Title;
