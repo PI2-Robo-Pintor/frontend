@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import ControlCameraOutlinedIcon from '@mui/icons-material/ControlCameraOutlined';
-
 import defaultColors from '../../settings/defaultSettings';
 
 export const Container = styled.div`
@@ -15,13 +13,23 @@ export const Container = styled.div`
   color: ${defaultColors.primary};
 `;
 
-export const Input = styled.input`
+export const Label = styled.label`
+  font-size: 20px;
+  font-weight: 700;
+  margin-right: 2%;
+
+  width: 10rem;
+`;
+
+export const Select = styled.select`
   width: 15vw;
   max-width: 100px;
+  min-width: 90px;
   height: 5vh;
   max-height: 30px;
 
   color: ${defaultColors.primary};
+  background-color: ${defaultColors.white};
 
   text-align: center;
 
@@ -31,17 +39,7 @@ export const Input = styled.input`
   &:focus {
     outline: none;
   }
-`;
 
-export const Label = styled.label`
-  font-size: 20px;
-  font-weight: 700;
-  margin-right: 2%;
-
-  width: 10rem;
-`;
-
-export const ControlButton = styled(ControlCameraOutlinedIcon)`
-  margin-left: 20px;
   cursor: pointer;
 `;
+
