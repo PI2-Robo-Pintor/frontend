@@ -15,9 +15,8 @@ interface Props {
 const HeightInput: React.FC<Props> = ({ label, value }) => (
   <Container>
     <Row>
-        <Label>{label}</Label>
-        <Label>{value} {(typeof value) === 'number' ? 'cm' : ''}</Label>
-
+      <Label>{label}</Label>
+      <Label>{value} {(typeof value) === 'number' ? 'cm' : ''}</Label>
     </Row>
     <Hr />
   </Container>

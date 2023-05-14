@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import NewPainting from './pages/NewPainting';
 import Preferences from './pages/Preferences';
 import PaintTest from './pages/PaintTest';
+import Header from './components/Header';
 
 function App() {
   const [maxHeight, setMaxHeight] = useState(10);
@@ -27,6 +28,7 @@ function App() {
     <div>
       <BrowserRouter>
         <GlobalStyle />
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new-painting" element={<NewPainting />} />
