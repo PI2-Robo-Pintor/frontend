@@ -8,9 +8,9 @@ interface Props {
 }
 
 const Button: React.FC<Props> = ({ text, onClick, color }) => (
-  	<Container onClick={onClick} color={color}>
-    	{text}
-  	</Container>
+	<Container onClick={onClick} color={color}>
+		{text}
+	</Container>
 );
 
 

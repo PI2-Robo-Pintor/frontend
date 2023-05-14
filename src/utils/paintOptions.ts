@@ -16,6 +16,3 @@ const paintOptions: Array<SelectType> = [
 ];
 
 export default paintOptions;
-
-
-  

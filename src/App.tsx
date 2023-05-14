@@ -8,6 +8,8 @@ import HeightInput from './components/HeightInput';
 import SelectComponent from './components/SelectComponent';
 import paintOptions from './utils/paintOptions';
 import InfoComponent from './components/InfoComponent';
+import GlobalStyle from './settings/globalStyles';
+import Footer from './components/Footer';
 
 function App() {
   const [maxHeight, setMaxHeight] = useState(10);
@@ -22,6 +24,7 @@ function App() {
 
   return (
     <div>
+      <GlobalStyle />
       <Title title="Altura máxima" />
       <Button text="Iniciar Pintura" onClick={() => console.log("123")} />
       <HeightInput label={'Altura máxima'} value={maxHeight} onChangeValue={setMaxHeight}/>
@@ -36,7 +39,7 @@ function App() {
           <InfoComponent label={'Tipo de pintura'} value={paintOption}/>
         </div>
       </div>
-
+      <Footer />
 
     </div>
   );
