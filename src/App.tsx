@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 import './App.css';
-import logo from './logo.svg';
-import { RobotChecklist } from './assets/images/robotChecklist';
-import { RobotMeasuring } from './assets/images/robotMeasuring';
-import { RobotRefiling } from './assets/images/robotRefiling';
-import { RobotSatisfied } from './assets/images/robotSatisfied';
-import { RobotThinking } from './assets/images/robotThinking';
-import { HeaderPainting } from './assets/images/headerPainting';
 
-import Button from './components/Button';
-import Title from './components/Title';
-import HeightInput from './components/HeightInput';
-import SelectComponent from './components/SelectComponent';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import paintOptions from './utils/paintOptions';
-import InfoComponent from './components/InfoComponent';
 import GlobalStyle from './settings/globalStyles';
 import Footer from './components/Footer';
+import Home from './pages/Home';
+import NewPainting from './pages/NewPainting';
+import Preferences from './pages/Preferences';
+import PaintTest from './pages/PaintTest';
 
 function App() {
   const [maxHeight, setMaxHeight] = useState(10);
@@ -31,28 +25,16 @@ function App() {
 
   return (
     <div>
-      <GlobalStyle />
-      <Title title="Altura máxima" />
-      <Button text="Iniciar Pintura" onClick={() => console.log("123")} />
-      <HeightInput label={'Altura máxima'} value={maxHeight} onChangeValue={setMaxHeight}/>
-      <HeightInput label={'Altura mínima'} value={minHeight} onChangeValue={setMinHeight}/>
-      <SelectComponent label={'Tipo de pintura'} paintOption={paintOption} paintOptions={paintOptions} onChangeValue={setPaintOption}/>
-      <Button text="Parar Pintura" onClick={() => console.log("123")} color={'stop'}/>
-
-      <div className='teste'>
-        <div>
-          <InfoComponent label={'Altura máxima'} value={maxHeight}/>
-          <InfoComponent label={'Altura mínima'} value={minHeight}/>
-          <InfoComponent label={'Tipo de pintura'} value={paintOption}/>
-        </div>
-      </div>
-      <RobotChecklist />
-      <RobotMeasuring />
-      <RobotRefiling />
-      <RobotSatisfied />
-      <RobotThinking />
-      <HeaderPainting />
-      <Footer />
+      <BrowserRouter>
+        <GlobalStyle />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/new-painting" element={<NewPainting />} />
+          <Route path="/preferences" element={<Preferences />} />
+          <Route path="/test" element={<PaintTest />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
 
     </div>
   );

@@ -4,28 +4,27 @@ import InventoryOutlinedIcon from '@mui/icons-material/InventoryOutlined';
 
 import { FooterContainer, IconContainer } from "./styles";
 import { getButtonColor } from "../../utils/colorUtils";
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
   const path = window.location.pathname;
-  const isPaintingPage = path === '/paint';
-  const isPreferencesPage = path === '/preference';
+  const isPaintingPage = path === '/new-painting';
+  const isPreferencesPage = path === '/preferences';
   const isTestingPage = path === '/test';
 
-  const onClickPainting = () => console.log('Pintura')
-  const onClickTesting = () => console.log('Teste')
-  const onClickPreferences = () => console.log('Preferências')
+  const navigate = useNavigate();
 
   return (
     <FooterContainer>
-      <IconContainer isActive={isPaintingPage} onClick={onClickPainting}>
+      <IconContainer isActive={isPaintingPage} onClick={() => navigate('/new-painting')}>
         <ImagesearchRollerIcon color={getButtonColor(isPaintingPage)}/>
         {'Pintura'}
       </IconContainer>
-      <IconContainer isActive={isTestingPage} onClick={onClickTesting}>
+      <IconContainer isActive={isTestingPage} onClick={() => navigate('/test')}>
         <InventoryOutlinedIcon color={getButtonColor(isTestingPage)}/>
         {'Teste'}
       </IconContainer>
-      <IconContainer isActive={isPreferencesPage} onClick={onClickPreferences}>
+      <IconContainer isActive={isPreferencesPage} onClick={() => navigate('/preferences')}>
         <ListAltIcon  color={getButtonColor(isPreferencesPage)}/>
         {'Preferências'}
       </IconContainer>
