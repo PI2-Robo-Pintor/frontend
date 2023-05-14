@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-import logo from './logo.svg';
 import './App.css';
+import logo from './logo.svg';
+import { RobotChecklist } from './assets/images/robotChecklist';
+import { RobotMeasuring } from './assets/images/robotMeasuring';
+import { RobotRefiling } from './assets/images/robotRefiling';
+import { RobotSatisfied } from './assets/images/robotSatisfied';
+import { RobotThinking } from './assets/images/robotThinking';
+import { HeaderPainting } from './assets/images/headerPainting';
+
 import Button from './components/Button';
 import Title from './components/Title';
 import HeightInput from './components/HeightInput';
@@ -39,6 +46,12 @@ function App() {
           <InfoComponent label={'Tipo de pintura'} value={paintOption}/>
         </div>
       </div>
+      <RobotChecklist />
+      <RobotMeasuring />
+      <RobotRefiling />
+      <RobotSatisfied />
+      <RobotThinking />
+      <HeaderPainting />
       <Footer />
 
     </div>
