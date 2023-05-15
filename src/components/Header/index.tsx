@@ -6,7 +6,7 @@ const Header = () => {
     <Container>
       <RobotPainting />
       <MainTitle>{'Robô Pintor'}</MainTitle>
-      <ConnectionStatus isConnected={true} />
+      <ConnectionStatus isConnected={false} />
     </Container>
   )
 }
