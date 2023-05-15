@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import './App.css';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import paintOptions from './utils/paintOptions';
 import GlobalStyle from './settings/globalStyles';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -12,20 +11,11 @@ import NewPainting from './pages/NewPainting';
 import Preferences from './pages/Preferences';
 import PaintTest from './pages/PaintTest';
 import Header from './components/Header';
+import { UserProvider } from './contexts/UserContext';
 
 function App() {
-  const [maxHeight, setMaxHeight] = useState(10);
-  const [minHeight, setMinHeight] = useState(10);
-  const [paintOption, setPaintOption] = useState(paintOptions[0].value);
-
-  useEffect(() => {
-    console.log(maxHeight);
-    console.log(minHeight);
-    console.log(paintOption)
-  }, [maxHeight, minHeight, paintOption])
-
   return (
-    <div>
+    <UserProvider>
       <BrowserRouter>
         <GlobalStyle />
         <Header />
@@ -38,7 +28,7 @@ function App() {
         <Footer />
       </BrowserRouter>
 
-    </div>
+    </UserProvider>
   );
 }
 
