@@ -1,5 +1,4 @@
 import styled, { css, keyframes } from 'styled-components';
-import defaultColors from '../../settings/defaultSettings';
 
 const loading = keyframes`
   0%,
@@ -30,19 +29,17 @@ const loading = keyframes`
 `;
 
 interface BubbleSpinProps {
-  duration: number;
-  size: number;
   color: string;
 }
 
 export const BubbleSpin: React.FC<BubbleSpinProps> = styled.div`
-  animation: ${props => css`${loading} ${props.duration}s infinite linear;`};
+  animation: ${props => css`${loading} 1s infinite linear;`};
   border-radius: 50%;
   color: ${props => props.color};
-  font-size: ${props => `${props.size}px`};
+  font-size: 4px;
   position: relative;
   transform: translateZ(0);
   height: 5px;
   width: 5px;
-  margin: ${props => `${props.size * 3}px`};
+  margin: 12px;
 `;

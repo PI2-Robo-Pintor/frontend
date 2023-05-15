@@ -13,7 +13,7 @@ const ConnectionStatus: React.FC<Props> = ({ isConnected }) => {
         {
           isConnected
             ? <ConnectedIcon />
-            : <Loading size={4} color={defaultColors.black} duration={1} />
+            : <Loading color={defaultColors.black} />
         }
         <Status>
           { isConnected ? 'Conectado' : 'Conectando...' }

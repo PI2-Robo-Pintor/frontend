@@ -1,6 +1,7 @@
 const defaultColors = {
     primary: '#4EA09B',
     white: '#FFFFFF',
+    green: '#00FF00',
     stop: '#FE2D2D',
     error: '#FF0000',
     background: '#F5F5F5',
