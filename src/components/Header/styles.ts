@@ -29,6 +29,8 @@ export const MainTitle = styled.div`
   text-align-last: center;
   color: ${defaultColors.white};
 
+  cursor: pointer;
+
   @media (max-width: 390px) {
     font-size: 19px;
   }

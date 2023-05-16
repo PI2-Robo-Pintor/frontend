@@ -24,12 +24,6 @@ export function UserProvider({ children }: UserProviderProps){
     const [minHeight, setMinHeight] = useState(10);
     const [paintOption, setPaintOption] = useState(paintOptions[0].value);
 
-    useEffect(() => {
-        console.log(maxHeight);
-        console.log(minHeight);
-        console.log(paintOption)
-    }, [maxHeight, minHeight, paintOption]);
-
     return(
         <UserContext.Provider value={{
             maxHeight,

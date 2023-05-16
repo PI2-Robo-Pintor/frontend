@@ -5,10 +5,21 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-start;
 
-    height: 80vh;
+    padding-top: 15vh;
 
+    flex: 1;
 
 `;
 
+export const ButtonsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 50%;
+
+    padding-top: 10vh;
+`;

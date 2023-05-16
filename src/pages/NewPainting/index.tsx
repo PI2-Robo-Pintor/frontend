@@ -6,6 +6,7 @@ import HeightInput from '../../components/HeightInput';
 import SelectComponent from '../../components/SelectComponent';
 import { UserContext } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { PaintingType } from '../../customTypes/paintingType';
 
 
 const NewPainting: React.FC= () => {
@@ -21,6 +22,26 @@ const NewPainting: React.FC= () => {
 
     const navigate = useNavigate();
 
+	const handlePainting = () => {
+		const paintingInfo: PaintingType = {
+			maxHeight,
+			minHeight,
+			paintOption
+		};
+
+		let paintingInfos: Array<PaintingType> = JSON.parse(localStorage.getItem('paintingInfos') || '[]');
+
+		paintingInfos.push(paintingInfo);
+
+		if(paintingInfos.length > 3) {
+			paintingInfos.shift()
+		}
+
+		localStorage.setItem('paintingInfos',JSON.stringify(paintingInfos));
+
+		navigate('/ongoing-painting');
+	}
+
 	return (
 		<Container>
 			<Title title={'Nova Pintura'}/>
@@ -34,7 +55,7 @@ const NewPainting: React.FC= () => {
 					onChangeValue={setPaintOption}
 				/>
 			</InputsContainer>
-			<Button text={'Iniciar Pintura'} onClick={()=> navigate('/ongoing-painting')}/>
+			<Button text={'Iniciar Pintura'} onClick={handlePainting}/>
 		</Container>
 	);
 };
