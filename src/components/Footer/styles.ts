@@ -16,7 +16,7 @@ export const FooterContainer = styled.footer`
   width: 100%;
   bottom: 0;
   padding: 10px 0;
-  gap: 20vw;
+  gap: 12vw;
 
   box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.25);
 `;
