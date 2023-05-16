@@ -12,6 +12,7 @@ import Preferences from './pages/Preferences';
 import PaintTest from './pages/PaintTest';
 import Header from './components/Header';
 import { UserProvider } from './contexts/UserContext';
+import OngoingPainting from './pages/OngoingPainting';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/new-painting" element={<NewPainting />} />
+            <Route path="/ongoing-painting" element={<OngoingPainting />} />
             <Route path="/preferences" element={<Preferences />} />
             <Route path="/test" element={<PaintTest />} />
           </Routes>

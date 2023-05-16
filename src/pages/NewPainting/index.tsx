@@ -5,6 +5,7 @@ import Title from '../../components/Title';
 import HeightInput from '../../components/HeightInput';
 import SelectComponent from '../../components/SelectComponent';
 import { UserContext } from '../../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const NewPainting: React.FC= () => {
@@ -17,6 +18,8 @@ const NewPainting: React.FC= () => {
 		setPaintOption,
 		paintOptions
 	} = useContext(UserContext);
+
+    const navigate = useNavigate();
 
 	return (
 		<Container>
@@ -31,7 +34,7 @@ const NewPainting: React.FC= () => {
 					onChangeValue={setPaintOption}
 				/>
 			</InputsContainer>
-				<Button text={'Iniciar Pintura'} onClick={()=> console.log('teste')}/>
+			<Button text={'Iniciar Pintura'} onClick={()=> navigate('/ongoing-painting')}/>
 		</Container>
 	);
 };
