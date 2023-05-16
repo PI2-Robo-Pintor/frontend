@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { SelectType } from "../customTypes/selectTypes";
 
 import paintOptions from '../utils/paintOptions';
 
@@ -6,6 +7,7 @@ interface UserContextData {
     maxHeight: number;
     minHeight: number;
     paintOption: string;
+    paintOptions: Array<SelectType>;
     setMaxHeight: (value: number) => void;
     setMinHeight: (value: number) => void;
     setPaintOption: (value: string) => void;
@@ -33,6 +35,7 @@ export function UserProvider({ children }: UserProviderProps){
             maxHeight,
             minHeight,
             paintOption,
+            paintOptions,
             setMaxHeight,
             setMinHeight,
             setPaintOption

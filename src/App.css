@@ -7,10 +7,10 @@
   pointer-events: none;
 }
 
-.teste {
+.container {
+  height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
 }
 
 @media (prefers-reduced-motion: no-preference) {

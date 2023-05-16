@@ -18,16 +18,17 @@ function App() {
     <UserProvider>
       <BrowserRouter>
         <GlobalStyle />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/new-painting" element={<NewPainting />} />
-          <Route path="/preferences" element={<Preferences />} />
-          <Route path="/test" element={<PaintTest />} />
-        </Routes>
-        <Footer />
+        <div className='container'>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/new-painting" element={<NewPainting />} />
+            <Route path="/preferences" element={<Preferences />} />
+            <Route path="/test" element={<PaintTest />} />
+          </Routes>
+          <Footer />
+        </div>
       </BrowserRouter>
-
     </UserProvider>
   );
 }
