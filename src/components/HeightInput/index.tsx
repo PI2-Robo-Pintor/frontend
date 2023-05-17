@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   Container,
@@ -10,19 +11,27 @@ import {
 interface Props {
   label: string;
   value: number;
-  onChangeValue: (value: number) => void
+  onChangeValue: (value: number) => void;
+  typeHeight: string;
 }
 
-const HeightInput: React.FC<Props> = ({ label, value, onChangeValue }) => (
-  <Container>
-    <Label>{label}</Label>
-    <InputBox
-      value={value}
-      maxLength={3}
-      onChange={(e) => onChangeValue(+e.target.value)}
-    />
-    <ControlButton onClick={() => console.log('123')}/>
-  </Container>
-);
+const HeightInput: React.FC<Props> = ({ label, value, onChangeValue, typeHeight }) => {
+  const navigate = useNavigate();
+
+  return(
+    <Container>
+      <Label>{label}</Label>
+      <InputBox
+        value={value}
+        maxLength={3}
+        onChange={(e) => onChangeValue(+e.target.value)}
+      />
+      <ControlButton onClick={() => navigate(`/new-painting/${typeHeight}`)}/>
+    </Container>
+
+  )
+};
 
 export default HeightInput;
+
+
