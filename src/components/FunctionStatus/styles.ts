@@ -7,10 +7,12 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  width: 15vw;
-  min-width: 180px;
+  width: 20vw;
+  min-width: 200px;
 
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+
   margin-bottom: 1vh;
 
   font-family: 'Roboto';

@@ -26,6 +26,8 @@ export const Container = styled.div`
 
   color: ${defaultColors.white};
 
+  cursor: pointer;
+
 `;
 
 
