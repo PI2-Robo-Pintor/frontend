@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './App.css';
 
@@ -15,7 +15,41 @@ import { UserProvider } from './contexts/UserContext';
 import OngoingPainting from './pages/OngoingPainting';
 import HeightConfig from './pages/HeightConfig';
 
+import mqttClient from 'u8-mqtt/esm/web/index.js'
+
 function App() {
+  let client
+  useEffect(() => {
+    async function connect() {
+      client = mqttClient().with_websock('ws://172.16.1.196:9883')
+
+        await client.connect()
+
+        client.subscribe_topic(
+          'pi2/:topic',
+          (packet, params, context) => {
+            console.log('topic packet', params, packet, packet.json());
+            console.log( packet);
+            // console.log(packet.json());
+            var message = packet.json().note
+            alert(message)
+          }
+        )
+
+        await client.json_send(
+          'pi2/novo-topico',
+          {
+            note: 'from web bundle example',
+            live: new Date().toISOString()
+          }
+        )
+    }
+
+    connect()
+
+    return () => client.disconnect()
+  }, [])
+
   return (
     <UserProvider>
       <BrowserRouter>
