@@ -18,19 +18,19 @@ const Footer = () => {
 
   return (
     <FooterContainer>
-      <IconContainer isActive={isHomePage} onClick={() => navigate('/')}>
+      <IconContainer data-testid ="home-icon" isActive={isHomePage} onClick={() => navigate('/')}>
         <HomeIcon color={getButtonColor(isHomePage)}/>
         {'Home'}
       </IconContainer>
-      <IconContainer isActive={isPaintingPage} onClick={() => navigate('/new-painting')}>
+      <IconContainer data-testid ="painting-icon" isActive={isPaintingPage} onClick={() => navigate('/new-painting')}>
         <ImagesearchRollerIcon color={getButtonColor(isPaintingPage)}/>
         {'Pintura'}
       </IconContainer>
-      <IconContainer isActive={isTestingPage} onClick={() => navigate('/test')}>
+      <IconContainer data-testid ="test-icon" isActive={isTestingPage} onClick={() => navigate('/test')}>
         <InventoryOutlinedIcon color={getButtonColor(isTestingPage)}/>
         {'Teste'}
       </IconContainer>
-      <IconContainer isActive={isPreferencesPage} onClick={() => navigate('/preferences')}>
+      <IconContainer data-testid ="preferences-icon" isActive={isPreferencesPage} onClick={() => navigate('/preferences')}>
         <ListAltIcon  color={getButtonColor(isPreferencesPage)}/>
         {'Preferências'}
       </IconContainer>
