@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { MAX_HEIGHT, MIN_HEIGHT } from "../../constants";
+import { UserContext } from "../../contexts/UserContext";
 
 import {
   Container,
@@ -18,6 +20,11 @@ interface Props {
 const HeightInput: React.FC<Props> = ({ label, value, onChangeValue, typeHeight }) => {
   const navigate = useNavigate();
 
+  const { 
+		maxHeight,
+		minHeight,
+	} = useContext(UserContext);
+
   return(
     <Container>
       <Label>{label}</Label>
@@ -25,6 +32,10 @@ const HeightInput: React.FC<Props> = ({ label, value, onChangeValue, typeHeight 
         value={value}
         maxLength={3}
         onChange={(e) => onChangeValue(+e.target.value)}
+        type="number"
+        min={MIN_HEIGHT}
+        max={MAX_HEIGHT}
+
       />
       <ControlButton onClick={() => navigate(`/new-painting/${typeHeight}`)}/>
     </Container>

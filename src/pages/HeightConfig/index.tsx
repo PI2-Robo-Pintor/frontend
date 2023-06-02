@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import arrowUp from '../../assets/images/arrowUp.svg'
 import arrowDown from '../../assets/images/arrowDown.svg'
+import {MAX_HEIGHT, MIN_HEIGHT} from '../../constants';
 
 
 const HeightConfig: React.FC= () => {
@@ -25,11 +26,20 @@ const HeightConfig: React.FC= () => {
     const handleChange = typeHeight === 'max-height' ? setMaxHeight : setMinHeight;
 
     const increaseHeight = () => {
-        handleChange(value + 1)
+        if(value < MAX_HEIGHT) {
+            if(typeHeight === 'max-height' || minHeight < maxHeight) {
+                handleChange(value + 1);
+            } 
+
+        }
     }
 
     const decreaseHeight = () => {
-        handleChange(value - 1)
+        if(value > MIN_HEIGHT) {
+            if(typeHeight === 'min-height' || minHeight < maxHeight) {
+                handleChange(value - 1);
+            }
+        }
     }
 
     return (

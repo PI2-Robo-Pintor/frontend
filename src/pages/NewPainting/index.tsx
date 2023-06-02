@@ -42,6 +42,8 @@ const NewPainting: React.FC= () => {
 		navigate('/ongoing-painting');
 	}
 
+	const isDisabled = () => minHeight > maxHeight;
+
 	return (
 		<Container>
 			<Title title={'Nova Pintura'}/>
@@ -65,7 +67,7 @@ const NewPainting: React.FC= () => {
 					onChangeValue={setPaintOption}
 				/>
 			</InputsContainer>
-			<Button text={'Iniciar Pintura'} onClick={handlePainting}/>
+			<Button isDisabled={isDisabled()} text={'Iniciar Pintura'} onClick={handlePainting}/>
 		</Container>
 	);
 };
