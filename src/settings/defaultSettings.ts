@@ -7,6 +7,7 @@ const defaultColors = {
     background: '#F5F5F5',
     black: '#000000',
     gray: '#00000070',
+    cancel: '#d33'
 };
 
 export default defaultColors;
