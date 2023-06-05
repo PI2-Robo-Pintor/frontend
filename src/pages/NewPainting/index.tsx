@@ -47,6 +47,7 @@ const NewPainting: React.FC= () => {
 			<Title title={'Nova Pintura'}/>
 			<InputsContainer>
 				<HeightInput 
+					data-testid={"max-height-input"}
 					label={'Altura máxima'} 
 					value={maxHeight} 
 					onChangeValue={setMaxHeight} 
@@ -57,15 +58,17 @@ const NewPainting: React.FC= () => {
 					value={minHeight} 
 					onChangeValue={setMinHeight}
 					typeHeight={'min-height'}
+					data-testid={"min-height-input"}
 				/>
 				<SelectComponent 
 					label={'Tipo de pintura'} 
 					paintOption={paintOption} 
 					paintOptions={paintOptions} 
 					onChangeValue={setPaintOption}
+					data-testid={"paint-option-select"}
 				/>
 			</InputsContainer>
-			<Button text={'Iniciar Pintura'} onClick={handlePainting}/>
+			<Button text={'Iniciar Pintura'} onClick={handlePainting} data-testid="start-painting-button"/>
 		</Container>
 	);
 };
