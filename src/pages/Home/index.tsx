@@ -10,7 +10,6 @@ const Home: React.FC= () => {
 
     return (
         <Container>
-            <Title title={'Robô Pintor'}/>
             <ButtonsContainer>
                 <Button text={'Nova Pintura'} onClick={() => navigate('/new-painting')}/>
                 <Button text={'Preferências'} onClick={() => navigate('/preferences')}/>

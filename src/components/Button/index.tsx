@@ -5,10 +5,11 @@ interface Props {
     text: string;
     onClick: () => void;
 	color?: string;
+	isDisabled?: boolean;
 }
 
-const Button: React.FC<Props> = ({ text, onClick, color }) => (
-	<Container onClick={onClick} color={color}>
+const Button: React.FC<Props> = ({ text, onClick, color, isDisabled = false }) => (
+	<Container onClick={onClick} color={color} disabled={isDisabled}>
 		{text}
 	</Container>
 );

@@ -14,13 +14,23 @@ import Header from './components/Header';
 import { UserProvider } from './contexts/UserContext';
 import OngoingPainting from './pages/OngoingPainting';
 import HeightConfig from './pages/HeightConfig';
+import image from "./assets/images/RobotMeasuring.svg"; 
+
 
 function App() {
   return (
     <UserProvider>
       <BrowserRouter>
         <GlobalStyle />
-        <div className='container'>
+        <div 
+          className='container'
+          style={{ 
+            backgroundImage:`url(${image})`,
+            backgroundRepeat:"no-repeat",
+            backgroundSize: '20vh', 
+            backgroundPosition: 'bottom right',
+          }}
+        >
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
