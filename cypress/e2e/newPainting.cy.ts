@@ -1,4 +1,3 @@
-import { type } from "os";
 
 describe('NewPainting', () => {
   beforeEach(() => {
