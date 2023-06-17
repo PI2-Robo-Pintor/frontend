@@ -7,6 +7,7 @@ import SelectComponent from '../../components/SelectComponent';
 import { UserContext } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { PaintingType } from '../../customTypes/paintingType';
+import { MqttContext } from '../../contexts/MqttContext';
 
 
 const NewPainting: React.FC= () => {
@@ -21,6 +22,8 @@ const NewPainting: React.FC= () => {
 	} = useContext(UserContext);
 
     const navigate = useNavigate();
+
+	const {mqttPublish} = useContext(MqttContext);
 
 	const handlePainting = () => {
 		const paintingInfo: PaintingType = {
@@ -40,6 +43,15 @@ const NewPainting: React.FC= () => {
 		localStorage.setItem('paintingInfos',JSON.stringify(paintingInfos));
 
 		navigate('/ongoing-painting');
+
+		mqttPublish({
+			topic: 'pi2/painting',
+			message: {
+				command: 'start-painting',
+				maxHeight: maxHeight,
+				minHeight: minHeight
+			}
+		})
 	}
 
 	const isDisabled = () => minHeight > maxHeight;
