@@ -13,7 +13,11 @@ const Home: React.FC= () => {
 
     const teste = () => {
         mqttSubscribe({
-            topic: 'pi2/painting'
+            topic: 'pi2/painting',
+            callback: (params) => {
+                console.log(params.topic)
+                console.log(params.json())
+            }
         });
         navigate('/new-painting')
     }

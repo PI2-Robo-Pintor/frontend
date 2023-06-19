@@ -5,6 +5,7 @@ const MQTT_URL = 'wss://test.mosquitto.org:8081';
 
 interface MqttSubscribeProps {
     topic: string;
+    callback: (params: any) => void;
 }
 
 interface MqttPublishProps {
@@ -30,21 +31,19 @@ export function MqttProvider({ children }: MqttProviderProps){
         console.log(client)
     }, [client])
 
-
     const mqttConnect = async () => {
-        const clientMqtt = mqttClient().with_websock(MQTT_URL);
+        const clientMqtt = mqttClient().with_websock(MQTT_URL).with_autoreconnect();
         await clientMqtt.connect();
         
         setClient(clientMqtt)
     };
 
-    const mqttSubscribe = ({ topic }: MqttSubscribeProps) => {
+    const mqttSubscribe = ({ topic, callback }: MqttSubscribeProps) => {
         if (client) {
             client.subscribe_topic(
                 topic,
                 (packet: any, params: any, context: any) => {
-                  console.log(packet.topic);
-                  console.log(packet.json());
+                  callback(packet);
                 }
               )
         }
@@ -56,7 +55,7 @@ export function MqttProvider({ children }: MqttProviderProps){
                 topic,
                 message
             )
-        }
+        }  
     }
 
     useEffect(() => {
