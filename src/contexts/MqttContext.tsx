@@ -1,7 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import mqttClient from 'u8-mqtt/esm/web/index.js';
-
-const MQTT_URL = 'wss://test.mosquitto.org:8081';
+import { MQTT_URL } from "../settings/mqttSettings";
 
 interface MqttSubscribeProps {
     topic: string;

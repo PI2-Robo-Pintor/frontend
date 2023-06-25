@@ -8,6 +8,7 @@ import { UserContext } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { PaintingType } from '../../customTypes/paintingType';
 import { MqttContext } from '../../contexts/MqttContext';
+import { mqttTopics, OnOffEnum, TypeEnum } from '../../settings/mqttSettings';
 
 
 const NewPainting: React.FC= () => {
@@ -42,16 +43,39 @@ const NewPainting: React.FC= () => {
 
 		localStorage.setItem('paintingInfos',JSON.stringify(paintingInfos));
 
-		navigate('/ongoing-painting');
-
 		mqttPublish({
-			topic: 'pi2/painting',
+			topic: mqttTopics.general,
 			message: {
-				command: 'start-painting',
-				maxHeight: maxHeight,
-				minHeight: minHeight
+				type: TypeEnum.max_height,
+				value: maxHeight
 			}
 		})
+
+		mqttPublish({
+			topic: mqttTopics.general,
+			message: {
+				type: TypeEnum.min_height,
+				value: minHeight
+			}
+		})
+
+		mqttPublish({
+			topic: mqttTopics.general,
+			message: {
+				type: TypeEnum.velocity,
+				value: 23
+			}
+		})
+
+		mqttPublish({
+			topic: mqttTopics.general,
+			message: {
+				type: TypeEnum.on_off,
+				value: OnOffEnum.on
+			}
+		})
+
+		navigate('/ongoing-painting');
 	}
 
 	const isDisabled = () => minHeight > maxHeight;

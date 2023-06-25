@@ -6,6 +6,8 @@ import InfoComponent from '../../components/InfoComponent';
 import { UserContext } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { optionDialog } from '../../utils/dialogs';
+import { MqttContext } from '../../contexts/MqttContext';
+import { mqttTopics, OnOffEnum, TypeEnum } from '../../settings/mqttSettings';
 
 
 const OngoingPainting: React.FC= () => {
@@ -17,10 +19,24 @@ const OngoingPainting: React.FC= () => {
 
     const navigate = useNavigate();
 
+	const {mqttPublish} = useContext(MqttContext);
+
+	const stopPainting = () => {
+		mqttPublish({
+			topic: mqttTopics.general,
+			message: {
+				type: TypeEnum.on_off,
+				value: OnOffEnum.off
+			}
+		});
+
+		navigate('/new-painting');
+	}
+
 	const handleButton = () => {
 		optionDialog({
 			title: 'Deseja parar a pintura?',
-			handleFunction: () => navigate('/new-painting')
+			handleFunction: stopPainting
 		})
 	}
 
