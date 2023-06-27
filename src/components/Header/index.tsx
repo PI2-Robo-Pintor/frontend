@@ -6,7 +6,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <Container>
+    <Container data-testid="connection-status">
       <RobotPainting />
       <MainTitle onClick={() => navigate('/')}>{'Robô Pintor'}</MainTitle>
       <ConnectionStatus isConnected={false} />
