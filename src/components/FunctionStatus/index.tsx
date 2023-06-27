@@ -13,10 +13,10 @@ interface Props {
 
 const FunctionStatus: React.FC<Props> = ({ label, state }) => (
   <Container>
-    <Label>{label}</Label>
-    {state === 0 && <Loading color={defaultColors.primary} />}
-    {state === 1 && <CheckCircleIcon style={{ color: defaultColors.green}} />}
-    {state === 2 && <DangerousIcon style={{ color: defaultColors.error}} />}
+   <Label aria-label="function-status-label">{label}</Label>
+    {state === 0 && <Loading aria-label="loading" color={defaultColors.primary} />}
+    {state === 1 && <CheckCircleIcon aria-label="check-circle" style={{ color: defaultColors.green}} />}
+    {state === 2 && <DangerousIcon aria-label="dangerous" style={{ color: defaultColors.error}} />}
   </Container>
 )
 
