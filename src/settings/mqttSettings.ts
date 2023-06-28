@@ -3,7 +3,7 @@ export const MQTT_URL = 'wss://test.mosquitto.org:8081';
 export const mqttTopics = {
     general: 'pi2/general',
     sensors: 'pi2/sensors',
-    states: 'pi2/states'
+    states: 'pi2/states',
 };
 
 export enum StateEnum {

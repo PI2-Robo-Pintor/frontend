@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
-import { Container, ButtonsContainer } from './styles';
+import { Container, ButtonsContainer, TestContainer } from './styles';
 import Button from '../../components/Button';
 import Title from '../../components/Title';
 import { useNavigate } from 'react-router-dom';
 import { MqttContext } from '../../contexts/MqttContext';
 
+import { mqttTopics, TypeEnum } from '../../settings/mqttSettings';
+import VelocityInput from '../../components/VelocityInput';
 
 const Home: React.FC= () => {
     const navigate = useNavigate();
-    const {mqttSubscribe} = useContext(MqttContext)
-
+    const { mqttSubscribe, mqttPublish} = useContext(MqttContext);
 
     const teste = () => {
         mqttSubscribe({
@@ -22,13 +23,24 @@ const Home: React.FC= () => {
         navigate('/new-painting')
     }
 
+    const testePre = (code: number) => {
+        mqttPublish({
+            topic: mqttTopics.general,
+            message: {
+                type: TypeEnum.on_off,
+                value: code,
+            }
+        })
+    }
+
     return (
         <Container>
             <ButtonsContainer>
-                <Button text={'Nova Pintura'} onClick={teste}/>
-                {/* <Button text={'Nova Pintura'} onClick={() => navigate('/new-painting')}/> */}
-                <Button text={'Preferências'} onClick={() => navigate('/preferences')}/>
-                <Button text={'Realizar Teste'} onClick={() => navigate('/test')}/>
+                <TestContainer>
+                    <Button text="Iniciar" onClick={() => testePre(1)}/>
+                    <Button text="Parar" onClick={() => testePre(0)}/>
+                </TestContainer>
+                <VelocityInput />
             </ButtonsContainer>
         </Container>
     )
