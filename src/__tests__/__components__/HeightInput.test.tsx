@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter, useNavigate } from 'react-router-dom';
 import HeightInput from '../../components/HeightInput';
+import { vi } from 'vitest';
 
 
 describe('Componente HeightInput', () => {
@@ -35,7 +36,7 @@ describe('Componente HeightInput', () => {
   });
 
   it.skip('Navega para nova pintura quando o botão é pressionado', () => {
-    const navigateMock = jest.fn();
+    const navigateMock = vi.fn();
     useNavigate.mockImplementation(() => navigateMock);
 
     render(
