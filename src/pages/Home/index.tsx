@@ -33,12 +33,23 @@ const Home: React.FC= () => {
         })
     }
 
+    const invert = () => {
+        mqttPublish({
+            topic: mqttTopics.general,
+            message: {
+                type: TypeEnum.invert,
+                value: 0,
+            }
+        })
+    }
+
     return (
         <Container>
             <ButtonsContainer>
                 <TestContainer>
                     <Button text="Iniciar" onClick={() => testePre(1)}/>
                     <Button text="Parar" onClick={() => testePre(0)}/>
+                    <Button text="Inverter" onClick={invert}/>
                 </TestContainer>
                 <VelocityInput />
             </ButtonsContainer>
