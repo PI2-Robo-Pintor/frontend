@@ -8,7 +8,8 @@ import { UserContext } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { PaintingType } from '../../customTypes/paintingType';
 import { MqttContext } from '../../contexts/MqttContext';
-import { mqttTopics, OnOffEnum, TypeEnum } from '../../settings/mqttSettings';
+import { OnOffEnum, PublishEnum, mqttTopics } from '../../settings/mqttSettings';
+import { PublishData } from '../../settings/mqttSettings';
 
 
 const NewPainting: React.FC= () => {
@@ -46,7 +47,7 @@ const NewPainting: React.FC= () => {
 		mqttPublish({
 			topic: mqttTopics.general,
 			message: {
-				type: TypeEnum.max_height,
+				type: PublishEnum.MAX_HEIGHT,
 				value: maxHeight
 			}
 		})
@@ -54,7 +55,7 @@ const NewPainting: React.FC= () => {
 		mqttPublish({
 			topic: mqttTopics.general,
 			message: {
-				type: TypeEnum.min_height,
+				type: PublishEnum.MIN_HEIGHT,
 				value: minHeight
 			}
 		})
@@ -62,7 +63,7 @@ const NewPainting: React.FC= () => {
 		mqttPublish({
 			topic: mqttTopics.general,
 			message: {
-				type: TypeEnum.velocity,
+				type: PublishEnum.VELOCITY,
 				value: 23
 			}
 		})
@@ -70,8 +71,8 @@ const NewPainting: React.FC= () => {
 		mqttPublish({
 			topic: mqttTopics.general,
 			message: {
-				type: TypeEnum.on_off,
-				value: OnOffEnum.on
+				type: PublishEnum.ON_OFF,
+				value: OnOffEnum.On
 			}
 		})
 

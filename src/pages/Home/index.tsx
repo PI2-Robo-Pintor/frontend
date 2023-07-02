@@ -4,6 +4,7 @@ import Button from '../../components/Button';
 import Title from '../../components/Title';
 import { useNavigate } from 'react-router-dom';
 import { MqttContext } from '../../contexts/MqttContext';
+import { Device, PressureData, RelayData, StepMotorData, mqttTopics } from '../../settings/mqttSettings';
 
 
 const Home: React.FC= () => {
@@ -13,10 +14,9 @@ const Home: React.FC= () => {
 
     const teste = () => {
         mqttSubscribe({
-            topic: 'pi2/painting',
+            topic: mqttTopics.data,
             callback: (params) => {
-                console.log(params.topic)
-                console.log(params.json())
+                console.log(params)
             }
         });
         navigate('/new-painting')

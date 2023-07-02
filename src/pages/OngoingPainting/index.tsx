@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { Container, InfoContainer } from './styles';
 import Button from '../../components/Button';
 import Title from '../../components/Title';
@@ -7,7 +7,7 @@ import { UserContext } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { optionDialog } from '../../utils/dialogs';
 import { MqttContext } from '../../contexts/MqttContext';
-import { mqttTopics, OnOffEnum, TypeEnum } from '../../settings/mqttSettings';
+import { PressureData, StepMotorData, StepMotorDataType, mqttTopics } from '../../settings/mqttSettings';
 
 
 const OngoingPainting: React.FC= () => {
@@ -17,7 +17,36 @@ const OngoingPainting: React.FC= () => {
 		paintOption,
 	} = useContext(UserContext);
 
-    const navigate = useNavigate();
+    const [currentPosition, setCurrentPosition] = useState<number>(minHeight);
+    const [pressure, setPressure] = useState<number>(0);
+
+
+
+    const {mqttSubscribe} = useContext(MqttContext)
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+        mqttSubscribe({
+            topic: mqttTopics.data,
+            callback: (params) => {
+                const data: StepMotorData = params;
+				if(data.type === StepMotorDataType.SMDT_POSITION){
+					setCurrentPosition(data.value);
+				}
+            }
+        });
+
+		// mqttSubscribe({
+        //     topic: mqttTopics.data,
+        //     callback: (params) => {
+        //         const data: PressureData = params;
+		// 			setPressure(data.value);
+				
+        //     }
+        // });
+    }, [])
+
 
 	const {mqttPublish} = useContext(MqttContext);
 
@@ -25,8 +54,8 @@ const OngoingPainting: React.FC= () => {
 		mqttPublish({
 			topic: mqttTopics.general,
 			message: {
-				type: TypeEnum.on_off,
-				value: OnOffEnum.off
+				type: 1,
+				value: 1
 			}
 		});
 
@@ -46,7 +75,9 @@ const OngoingPainting: React.FC= () => {
 			<InfoContainer>
 				<InfoComponent label={'Altura máxima'} value={maxHeight}/>
 				<InfoComponent label={'Altura mínima'} value={minHeight}/>
-				<InfoComponent label={'Tipo de parede'} value={paintOption}/>
+				{/* <InfoComponent label={'Tipo de parede'} value={paintOption}/> */}
+				<InfoComponent label={'Altura atual'} value={currentPosition}/>
+
 			</InfoContainer>
 			<Button text={'Parar Pintura'} color={'red'} onClick={handleButton}/>
 		</Container>
