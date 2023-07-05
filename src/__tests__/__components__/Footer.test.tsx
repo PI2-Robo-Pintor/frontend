@@ -1,19 +1,27 @@
 import { expect, describe, it } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom/extend-expect';
-import { MemoryRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import Footer from '../../components/Footer';
+import App from '../../App';
 
 describe('Componente de Footer', () => {
-  beforeEach(() => {
+  // beforeEach(() => {
+  //   render(
+  //     <MemoryRouter>
+  //       <Footer />
+  //     </MemoryRouter>
+  //   );
+  // });
+
+  it('Reinderiza corretamente os icones', () => {
     render(
       <MemoryRouter>
         <Footer />
       </MemoryRouter>
     );
-  });
 
-  it('Reinderiza corretamente os icones', () => {
     const homeIcon = screen.getByTestId('HomeIcon');
     const paintingIcon = screen.getByTestId('ImagesearchRollerIcon');
     const testIcon = screen.getByTestId('InventoryOutlinedIcon');
@@ -25,11 +33,15 @@ describe('Componente de Footer', () => {
     expect(preferencesIcon).toBeInTheDocument();
   });
 
-  it.skip('Navega corretamente para as paginas', () => {
+  it('Navega corretamente para as paginas', async () => {
+
+    render(<App />)
+
     const homeIcon = screen.getByTestId('HomeIcon');
     const paintingIcon = screen.getByTestId('ImagesearchRollerIcon');
     const testIcon = screen.getByTestId('InventoryOutlinedIcon');
     const preferencesIcon = screen.getByTestId('ListAltIcon');
+
 
     fireEvent.click(homeIcon);
     expect(window.location.pathname).toBe('/');
