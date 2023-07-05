@@ -7,7 +7,8 @@ import { UserContext } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { optionDialog } from '../../utils/dialogs';
 import { MqttContext } from '../../contexts/MqttContext';
-import { PressureData, StepMotorData, StepMotorDataType, mqttTopics } from '../../settings/mqttSettings';
+import { PressureData, StepMotorData, StepMotorDataType, mqttTopics, Device, RelayData, PublishEnum, OnOffEnum } from '../../settings/mqttSettings';
+import { DriveFileRenameOutlineTwoTone } from '@mui/icons-material';
 
 
 const OngoingPainting: React.FC= () => {
@@ -29,22 +30,38 @@ const OngoingPainting: React.FC= () => {
 	useEffect(() => {
         mqttSubscribe({
             topic: mqttTopics.data,
+			device: Device.D_STEP_MOTOR,
             callback: (params) => {
                 const data: StepMotorData = params;
 				if(data.type === StepMotorDataType.SMDT_POSITION){
 					setCurrentPosition(data.value);
 				}
+				console.log('motor')
+				console.log(data)
             }
         });
 
-		// mqttSubscribe({
-        //     topic: mqttTopics.data,
-        //     callback: (params) => {
-        //         const data: PressureData = params;
-		// 			setPressure(data.value);
-				
-        //     }
-        // });
+		mqttSubscribe({
+            topic: mqttTopics.data,
+			device: Device.D_PRESSURE,
+            callback: (params) => {
+                const data: PressureData = params;
+				setPressure(data.value);
+				console.log('pressure')
+				console.log(data)
+            }
+        });
+
+		mqttSubscribe({
+            topic: mqttTopics.data,
+			device: Device.D_RELAY,
+            callback: (params) => {
+                const data: RelayData = params;
+				// setPressure(data.value);
+				console.log('relay')
+				console.log(data)
+            }
+        });
     }, [])
 
 
@@ -54,8 +71,8 @@ const OngoingPainting: React.FC= () => {
 		mqttPublish({
 			topic: mqttTopics.general,
 			message: {
-				type: 1,
-				value: 1
+				type: PublishEnum.ON_OFF,
+				value: OnOffEnum.OF
 			}
 		});
 
@@ -77,6 +94,8 @@ const OngoingPainting: React.FC= () => {
 				<InfoComponent label={'Altura mínima'} value={minHeight}/>
 				{/* <InfoComponent label={'Tipo de parede'} value={paintOption}/> */}
 				<InfoComponent label={'Altura atual'} value={currentPosition}/>
+				{/* <InfoComponent label={'Pressão'} value={pressure}/> */}
+
 
 			</InfoContainer>
 			<Button text={'Parar Pintura'} color={'red'} onClick={handleButton}/>

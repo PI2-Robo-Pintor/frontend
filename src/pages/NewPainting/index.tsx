@@ -64,7 +64,7 @@ const NewPainting: React.FC= () => {
 			topic: mqttTopics.general,
 			message: {
 				type: PublishEnum.VELOCITY,
-				value: 23
+				value: paintOption
 			}
 		})
 

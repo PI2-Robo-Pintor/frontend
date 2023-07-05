@@ -6,6 +6,7 @@ import { Device, MQTT_URL, PressureData, RelayData, StepMotorData } from "../set
 interface MqttSubscribeProps {
     topic: string;
     callback: (params: any) => void;
+    device: Device;
 }
 
 interface MqttPublishProps {
@@ -40,32 +41,15 @@ export function MqttProvider({ children }: MqttProviderProps){
         // setClient(clientMqtt)
     };
 
-    const mqttSubscribe = ({ topic, callback }: MqttSubscribeProps) => {
+    const mqttSubscribe = ({ topic, callback, device }: MqttSubscribeProps) => {
         if (clientMqtt) {
             clientMqtt.subscribe_topic(
                 topic,
-                (packet: any, params: any, context: any) => {
-                    console.log(packet.topic)
-                
+                (packet: any, params: any, context: any) => {            
                     const data = packet.json();
-                    switch(data.device){
-                        case Device.D_PRESSURE:
-                            console.log('pressure');
-                            const pressureData: PressureData = data;
-                            callback(pressureData);
-                            break;
-                        case Device.D_RELAY:
-                            console.log('relay');
-                            const relayData: RelayData = data;
-                            callback(relayData);
-                            break;
-                        case Device.D_STEP_MOTOR:
-                            console.log('motor');
-                            const motorData: StepMotorData = data;
-                            callback(motorData)
-                            break;
-                        default:
-                            console.log('nada')
+
+                    if(data.device === device){
+                        callback(data);
                     }
                 }
               )

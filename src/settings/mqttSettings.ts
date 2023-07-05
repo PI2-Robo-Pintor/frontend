@@ -1,15 +1,16 @@
+// export const MQTT_URL = 'ws://192.168.1.101:9883';
 export const MQTT_URL = 'wss://test.mosquitto.org:8081';
 
+
 export const mqttTopics = {
-    general: 'testepi2/general',
-    data: 'testepi2/data',
+    general: 'pi2/general',
+    data: 'pi2/data',
 };
 
 //Publications
-
 export enum OnOffEnum {
     On = 1,
-    OF = 0
+    OF = 0,
 }
 
 export enum PublishEnum {
@@ -38,10 +39,10 @@ export enum RelayId{
 
 export enum StepMotorDataType{
     SMDT_NONE     = 0x00,
-    SMDT_STEPS    = 0xA1,
-    SMDT_POSITION = 0xA2,
-    SMDT_TURNS    = 0xA3,
-    SMDT_ON_OFF   = 0xA4,
+    SMDT_STEPS    = 0xA3,
+    SMDT_POSITION = 0xA1,
+    SMDT_TURNS    = 0xA4,
+    SMDT_ON_OFF   = 0xA2,
 };
 
 export interface StepMotorData {
