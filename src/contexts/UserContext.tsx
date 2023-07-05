@@ -6,11 +6,11 @@ import paintOptions from '../utils/paintOptions';
 interface UserContextData {
     maxHeight: number;
     minHeight: number;
-    paintOption: string;
+    paintOption: number;
     paintOptions: Array<SelectType>;
     setMaxHeight: (value: number) => void;
     setMinHeight: (value: number) => void;
-    setPaintOption: (value: string) => void;
+    setPaintOption: (value: number) => void;
 }
 
 interface UserProviderProps{

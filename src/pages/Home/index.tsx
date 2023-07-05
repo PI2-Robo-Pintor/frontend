@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, ButtonsContainer } from './styles';
 import Button from '../../components/Button';
-import Title from '../../components/Title';
 import { useNavigate } from 'react-router-dom';
 
 

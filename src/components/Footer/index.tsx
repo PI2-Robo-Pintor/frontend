@@ -16,21 +16,27 @@ const Footer = () => {
 
   const navigate = useNavigate();
 
+  const handleNavigation = (route: string) => {
+    if(path !== '/ongoing-painting'){
+      navigate(route);
+    }
+  }
+
   return (
     <FooterContainer>
-      <IconContainer isActive={isHomePage} onClick={() => navigate('/')}>
+      <IconContainer isactive={isHomePage ? 1 : 0} onClick={() => handleNavigation('/')}>
         <HomeIcon color={getButtonColor(isHomePage)}/>
         {'Home'}
       </IconContainer>
-      <IconContainer isActive={isPaintingPage} onClick={() => navigate('/new-painting')}>
+      <IconContainer isactive={isPaintingPage ? 1 : 0} onClick={() => handleNavigation('/new-painting')}>
         <ImagesearchRollerIcon color={getButtonColor(isPaintingPage)}/>
         {'Pintura'}
       </IconContainer>
-      <IconContainer isActive={isTestingPage} onClick={() => navigate('/test')}>
+      <IconContainer isactive={isTestingPage ? 1 : 0} onClick={() => handleNavigation('/test')}>
         <InventoryOutlinedIcon color={getButtonColor(isTestingPage)}/>
         {'Teste'}
       </IconContainer>
-      <IconContainer isActive={isPreferencesPage} onClick={() => navigate('/preferences')}>
+      <IconContainer isactive={isPreferencesPage ? 1 : 0} onClick={() => handleNavigation('/preferences')}>
         <ListAltIcon  color={getButtonColor(isPreferencesPage)}/>
         {'Preferências'}
       </IconContainer>

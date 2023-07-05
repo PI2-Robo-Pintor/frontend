@@ -22,7 +22,7 @@ export const FooterContainer = styled.footer`
 `;
 
 interface IconProps {
-  isActive: boolean;
+  isactive: number;
   onClick: () => void;
   children: React.ReactNode;
 }
@@ -39,5 +39,5 @@ export const IconContainer: React.FC<IconProps> = styled(IconButton)`
 
   font-size: 12px !important;
   font-weight: 400;
-  color: ${props => props.isActive ? defaultColors.black : defaultColors.gray};
+  color: ${props => props.isactive ? defaultColors.black : defaultColors.gray};
 `;
