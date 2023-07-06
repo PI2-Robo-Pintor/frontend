@@ -14,11 +14,12 @@ export enum OnOffEnum {
 }
 
 export enum PublishEnum {
-    VELOCITY   = 0xC1, 
-    MAX_HEIGHT = 0xC2, 
-    MIN_HEIGHT = 0xC3, 
-    ON_OFF     = 0xC4, 
-    TEST       = 0xC5,
+    VELOCITY    = 0xC1, 
+    MAX_HEIGHT  = 0xC2, 
+    MIN_HEIGHT  = 0xC3, 
+    ON_OFF      = 0xC4, 
+    INVERT      = 0xC5,
+    TEST        = 0xC6,
 }
 
 export interface PublishData {

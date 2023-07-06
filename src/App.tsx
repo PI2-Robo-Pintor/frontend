@@ -16,6 +16,7 @@ import OngoingPainting from './pages/OngoingPainting';
 import HeightConfig from './pages/HeightConfig';
 import image from "./assets/images/RobotMeasuring.svg"; 
 import { MqttProvider } from './contexts/MqttContext';
+import DebugPage from './pages/DebugPage';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
               <Route path="/ongoing-painting" element={<OngoingPainting />} />
               <Route path="/preferences" element={<Preferences />} />
               <Route path="/test" element={<PaintTest />} />
+              <Route path="/debug" element={<DebugPage />} />
             </Routes>
             <Footer />
           </div>
