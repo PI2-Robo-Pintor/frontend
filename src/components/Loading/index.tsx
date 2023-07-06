@@ -7,7 +7,7 @@ interface Props {
 }
 
 const Loading: React.FC<Props> = ({ color}) => (
-  <BubbleSpin color={color}/>
+  <BubbleSpin data-testid='LoadingIcon' color={color}/>
 );
 
 export default Loading;

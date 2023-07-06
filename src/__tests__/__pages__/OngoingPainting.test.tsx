@@ -5,10 +5,18 @@ import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { UserProvider } from '../../contexts/UserContext';
 import OngoingPainting from '../../pages/OngoingPainting';
+import { MqttProvider } from '../../contexts/MqttContext';
 
 describe('Teste da tela Pintura em andamento', () => {
     beforeEach(() => {
-        render(<UserProvider><OngoingPainting /></UserProvider>, {wrapper: BrowserRouter})    
+        render(
+            <UserProvider>
+                <MqttProvider>
+                    <OngoingPainting />
+                </MqttProvider>
+            </UserProvider>, 
+            {wrapper: BrowserRouter}
+        )    
     });
 
     it('Navegação para tela de pintura em andamento', async () => {    

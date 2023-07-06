@@ -35,7 +35,7 @@ const PaintTest: React.FC= () => {
             {isButtonClicked 
 				? 
 				<StatusContainer>
-					<FunctionStatus label={'Conexão'} state={2}/>
+					<FunctionStatus label={'Conexão'} state={0}/>
 					<FunctionStatus label={'Compressor'} state={2}/>
 					<FunctionStatus label={'Motor'} state={2}/>
 					<FunctionStatus label={'Válvula'} state={2}/>
