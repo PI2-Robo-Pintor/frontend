@@ -32,7 +32,7 @@ const HeightInput: React.FC<Props> = ({ label, value, onChangeValue, typeHeight 
         id="height-input"
         value={value}
         maxLength={3}
-        onChange={(e) => onChangeValue(+e.target.value)}
+        onChange={(e: any) => onChangeValue(+e.target.value)}
         type="number"
         min={MIN_HEIGHT}
         max={MAX_HEIGHT}
