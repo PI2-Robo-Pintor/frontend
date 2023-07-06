@@ -8,8 +8,10 @@ import { UserContext } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { PaintingType } from '../../customTypes/paintingType';
 import { MqttContext } from '../../contexts/MqttContext';
-import { OnOffEnum, PublishEnum, mqttTopics } from '../../settings/mqttSettings';
+import { Device, OnOffEnum, PublishEnum, RelayData, RobotData, RobotDataType, mqttTopics } from '../../settings/mqttSettings';
 import { PublishData } from '../../settings/mqttSettings';
+import Swal, { SweetAlertResult } from 'sweetalert2';
+import { confirmDialog } from '../../utils/dialogs';
 
 
 const NewPainting: React.FC= () => {
@@ -25,9 +27,49 @@ const NewPainting: React.FC= () => {
 
     const navigate = useNavigate();
 
-	const {mqttPublish} = useContext(MqttContext);
+	const {mqttPublish,mqttSubscribe} = useContext(MqttContext);
 
-	const handlePainting = () => {
+	const startPainting = () => {
+		mqttPublish({
+			topic: mqttTopics.general,
+			message: {
+				type: PublishEnum.ON_OFF,
+				value: OnOffEnum.On
+			}
+		})
+
+		navigate('/ongoing-painting');
+	}
+
+	const openModal = () => {
+		confirmDialog({
+			title: 'Preparando robô',
+			handleFunction: startPainting
+		})
+
+		const result: SweetAlertResult = 
+		{
+			isConfirmed: true,
+			isDenied: false,
+			isDismissed: false,
+			value: true
+		}
+
+		mqttSubscribe({
+            topic: mqttTopics.data,
+			device: Device.ROBOT_DATA,
+            callback: (params) => {
+                const data: RobotData = params;
+
+				if(data.type === RobotDataType.RDT_READY){
+					Swal.close(result)
+				}
+				
+            }
+        });
+	}
+
+	const handleClick = () => {
 		const paintingInfo: PaintingType = {
 			maxHeight,
 			minHeight,
@@ -60,23 +102,25 @@ const NewPainting: React.FC= () => {
 			}
 		})
 
-		mqttPublish({
-			topic: mqttTopics.general,
-			message: {
-				type: PublishEnum.VELOCITY,
-				value: paintOption
-			}
-		})
+		openModal();
 
-		mqttPublish({
-			topic: mqttTopics.general,
-			message: {
-				type: PublishEnum.ON_OFF,
-				value: OnOffEnum.On
-			}
-		})
+		// mqttPublish({
+		// 	topic: mqttTopics.general,
+		// 	message: {
+		// 		type: PublishEnum.VELOCITY,
+		// 		value: paintOption
+		// 	}
+		// })
 
-		navigate('/ongoing-painting');
+		// mqttPublish({
+		// 	topic: mqttTopics.general,
+		// 	message: {
+		// 		type: PublishEnum.ON_OFF,
+		// 		value: OnOffEnum.On
+		// 	}
+		// })
+
+		// navigate('/ongoing-painting');
 	}
 
 	const isDisabled = () => minHeight > maxHeight;
@@ -104,7 +148,7 @@ const NewPainting: React.FC= () => {
 					onChangeValue={setPaintOption}
 				/>
 			</InputsContainer>
-			<Button isDisabled={isDisabled()} text={'Iniciar Pintura'} onClick={handlePainting}/>
+			<Button isDisabled={isDisabled()} text={'Iniciar Pintura'} onClick={handleClick}/>
 		</Container>
 	);
 };

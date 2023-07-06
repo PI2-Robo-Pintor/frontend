@@ -8,8 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { optionDialog } from '../../utils/dialogs';
 import { MqttContext } from '../../contexts/MqttContext';
 import { PressureData, StepMotorData, StepMotorDataType, mqttTopics, Device, RelayData, PublishEnum, OnOffEnum } from '../../settings/mqttSettings';
-import { DriveFileRenameOutlineTwoTone } from '@mui/icons-material';
-
 
 const OngoingPainting: React.FC= () => {
 	const { 
@@ -20,8 +18,6 @@ const OngoingPainting: React.FC= () => {
 
     const [currentPosition, setCurrentPosition] = useState<number>(minHeight);
     const [pressure, setPressure] = useState<number>(0);
-
-
 
     const {mqttSubscribe} = useContext(MqttContext)
 
@@ -84,6 +80,7 @@ const OngoingPainting: React.FC= () => {
 			title: 'Deseja parar a pintura?',
 			handleFunction: stopPainting
 		})
+
 	}
 
 	return (
