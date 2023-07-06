@@ -8,7 +8,8 @@ interface OptionProps {
 
 interface ConfirmProps {
     title: string;
-    icon: SweetAlertIcon;
+    handleFunction: () => void;
+
 }
 
 export const optionDialog = (props : OptionProps) => {
@@ -20,6 +21,7 @@ export const optionDialog = (props : OptionProps) => {
         cancelButtonText: 'Não',
         confirmButtonText: 'Sim',
         width: 350,
+        allowOutsideClick: false
     }).then((result) => {
         if (result.isConfirmed) {
             props.handleFunction()
@@ -30,9 +32,15 @@ export const optionDialog = (props : OptionProps) => {
 export const confirmDialog = (props : ConfirmProps) => {
 
     Swal.fire({
-        icon: props.icon,
         title: props.title,
         width: 350,
-        confirmButtonColor: defaultColors.primary,
+        showCancelButton: false, 
+        showConfirmButton: false,
+        allowOutsideClick: false,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            props.handleFunction()
+        }
     })
+    Swal.showLoading()
 };

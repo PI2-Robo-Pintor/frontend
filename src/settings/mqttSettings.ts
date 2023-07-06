@@ -14,12 +14,13 @@ export enum OnOffEnum {
 }
 
 export enum PublishEnum {
-    VELOCITY    = 0xC1, 
-    MAX_HEIGHT  = 0xC2, 
-    MIN_HEIGHT  = 0xC3, 
-    ON_OFF      = 0xC4, 
-    INVERT      = 0xC5,
-    TEST        = 0xC6,
+    VELOCITY        = 0xC1, 
+    MAX_HEIGHT      = 0xC2, 
+    MIN_HEIGHT      = 0xC3, 
+    ON_OFF          = 0xC4, 
+    INVERT          = 0xC5,
+    TEST            = 0xC6,
+    CONFIRM_HEIGHT  = 0xC7
 }
 
 export interface PublishData {
@@ -57,7 +58,7 @@ export enum RobotDataType {
     RDT_NONE        = 0x00,
     RDT_COMPRESSOR  = 0xB1,
     RDT_MOTOR       = 0xB2,
-    RDT_VALVE       = 0xB3,
+    RDT_READY       = 0xB3,
 }
 
 export interface StepMotorData {
@@ -90,9 +91,5 @@ export const robotDataTypeLabels = [
     {
         type: RobotDataType.RDT_MOTOR,
         label: 'Motor'
-    },
-    {
-        type: RobotDataType.RDT_VALVE,
-        label: 'Válvula'
-    },
+    }
 ]
