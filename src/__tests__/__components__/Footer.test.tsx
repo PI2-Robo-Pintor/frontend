@@ -1,7 +1,5 @@
 import { expect, describe, it } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
-import '@testing-library/jest-dom/extend-expect';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import App from '../../App';
@@ -27,10 +25,10 @@ describe('Componente de Footer', () => {
     const testIcon = screen.getByTestId('InventoryOutlinedIcon');
     const preferencesIcon = screen.getByTestId('ListAltIcon');
 
-    expect(homeIcon).toBeInTheDocument();
-    expect(paintingIcon).toBeInTheDocument();
-    expect(testIcon).toBeInTheDocument();
-    expect(preferencesIcon).toBeInTheDocument();
+    expect(homeIcon).toBeTruthy();
+    expect(paintingIcon).toBeTruthy();
+    expect(testIcon).toBeTruthy();
+    expect(preferencesIcon).toBeTruthy();
   });
 
   it('Navega corretamente para as paginas', async () => {
