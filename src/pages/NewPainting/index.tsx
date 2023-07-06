@@ -102,25 +102,16 @@ const NewPainting: React.FC= () => {
 			}
 		})
 
+		mqttPublish({
+			topic: mqttTopics.general,
+			message: {
+				type: PublishEnum.CONFIRM_HEIGHT,
+				value: 1
+			}
+		})
+
 		openModal();
 
-		// mqttPublish({
-		// 	topic: mqttTopics.general,
-		// 	message: {
-		// 		type: PublishEnum.VELOCITY,
-		// 		value: paintOption
-		// 	}
-		// })
-
-		// mqttPublish({
-		// 	topic: mqttTopics.general,
-		// 	message: {
-		// 		type: PublishEnum.ON_OFF,
-		// 		value: OnOffEnum.On
-		// 	}
-		// })
-
-		// navigate('/ongoing-painting');
 	}
 
 	const isDisabled = () => minHeight > maxHeight;
