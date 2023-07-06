@@ -7,6 +7,9 @@ import SelectComponent from '../../components/SelectComponent';
 import { UserContext } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { PaintingType } from '../../customTypes/paintingType';
+import { MqttContext } from '../../contexts/MqttContext';
+import { OnOffEnum, PublishEnum, mqttTopics } from '../../settings/mqttSettings';
+import { PublishData } from '../../settings/mqttSettings';
 
 
 const NewPainting: React.FC= () => {
@@ -21,6 +24,8 @@ const NewPainting: React.FC= () => {
 	} = useContext(UserContext);
 
     const navigate = useNavigate();
+
+	const {mqttPublish} = useContext(MqttContext);
 
 	const handlePainting = () => {
 		const paintingInfo: PaintingType = {
@@ -38,6 +43,38 @@ const NewPainting: React.FC= () => {
 		}
 
 		localStorage.setItem('paintingInfos',JSON.stringify(paintingInfos));
+
+		mqttPublish({
+			topic: mqttTopics.general,
+			message: {
+				type: PublishEnum.MAX_HEIGHT,
+				value: maxHeight
+			}
+		})
+
+		mqttPublish({
+			topic: mqttTopics.general,
+			message: {
+				type: PublishEnum.MIN_HEIGHT,
+				value: minHeight
+			}
+		})
+
+		mqttPublish({
+			topic: mqttTopics.general,
+			message: {
+				type: PublishEnum.VELOCITY,
+				value: paintOption
+			}
+		})
+
+		mqttPublish({
+			topic: mqttTopics.general,
+			message: {
+				type: PublishEnum.ON_OFF,
+				value: OnOffEnum.On
+			}
+		})
 
 		navigate('/ongoing-painting');
 	}

@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+export const TestContainer = styled.div`
+    display: flex;
+    gap: 15px;
+    margin-top: 50px;
+    padding: 15px;
+
+    border: 1px solid red;
+    border-radius: 15px;
+`;
+
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -9,30 +19,14 @@ export const Container = styled.div`
     padding-top: 15vh;
 
     flex: 1;
-`;
-
-export const ButtonContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    height: 50%;
-
-    padding-top: 10vh;
 
 `;
 
-export const StatusContainer = styled.div`
+export const ButtonsContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-
-    // gap: 7vh;
+    justify-content: space-between;
 
     height: 50%;
-
-    padding-top: 10vh;
-
 `;

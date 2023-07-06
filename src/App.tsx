@@ -15,35 +15,39 @@ import { UserProvider } from './contexts/UserContext';
 import OngoingPainting from './pages/OngoingPainting';
 import HeightConfig from './pages/HeightConfig';
 import image from "./assets/images/RobotMeasuring.svg"; 
-
+import { MqttProvider } from './contexts/MqttContext';
+import DebugPage from './pages/DebugPage';
 
 function App() {
   return (
-    <UserProvider>
-      <BrowserRouter>
-        <GlobalStyle />
-        <div 
-          className='container'
-          style={{ 
-            backgroundImage:`url(${image})`,
-            backgroundRepeat:"no-repeat",
-            backgroundSize: '20vh', 
-            backgroundPosition: 'bottom right',
-          }}
-        >
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/new-painting" element={<NewPainting />} />
-            <Route path="/new-painting/:typeHeight" element={<HeightConfig />} />
-            <Route path="/ongoing-painting" element={<OngoingPainting />} />
-            <Route path="/preferences" element={<Preferences />} />
-            <Route path="/test" element={<PaintTest />} />
-          </Routes>
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </UserProvider>
+    <MqttProvider>
+      <UserProvider>
+        <BrowserRouter>
+          <GlobalStyle />
+          <div 
+            className='container'
+            style={{ 
+              backgroundImage:`url(${image})`,
+              backgroundRepeat:"no-repeat",
+              backgroundSize: '20vh', 
+              backgroundPosition: 'bottom right',
+            }}
+          >
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/new-painting" element={<NewPainting />} />
+              <Route path="/new-painting/:typeHeight" element={<HeightConfig />} />
+              <Route path="/ongoing-painting" element={<OngoingPainting />} />
+              <Route path="/preferences" element={<Preferences />} />
+              <Route path="/test" element={<PaintTest />} />
+              <Route path="/debug" element={<DebugPage />} />
+            </Routes>
+            <Footer />
+          </div>
+        </BrowserRouter>
+      </UserProvider>
+    </MqttProvider>
   );
 }
 

@@ -4,9 +4,9 @@ import { Container, Label, Select } from './styles';
 
 interface Props {
 	label: string;
-	paintOption: string;
+	paintOption: number;
     paintOptions: Array<SelectType>;
-    onChangeValue: (value: string) => void;
+    onChangeValue: (value: number) => void;
 }
 
 const SelectComponent: React.FC<Props> = ({ label, paintOption, paintOptions, onChangeValue }) => {
@@ -14,7 +14,7 @@ const SelectComponent: React.FC<Props> = ({ label, paintOption, paintOptions, on
   	return (
 		<Container>
 			<Label>{label}</Label>
-			<Select value={paintOption} onChange={(e) => onChangeValue(e.target.value)}>
+			<Select value={paintOption} onChange={(e) => onChangeValue(parseInt(e.target.value))}>
 				{paintOptions.map(option => (
 					<option key={option.value} value={option.value}>
 						{option.label}
