@@ -3,31 +3,32 @@ import { render, screen } from '@testing-library/react';
 
 import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import NewPainting from '../../pages/NewPainting';
 import { UserProvider } from '../../contexts/UserContext';
 import { MqttProvider } from '../../contexts/MqttContext';
+import PaintTest from '../../pages/PaintTest';
 
-describe('Teste da tela Nova Pintura', () => {
+
+describe('Teste da tela de Testes', () => {
     beforeEach(() => {
         render(
             <UserProvider>
                 <MqttProvider>
-                    <NewPainting />
+                    <PaintTest />
                 </MqttProvider>
             </UserProvider>, 
             {wrapper: BrowserRouter}
         ) 
     });
 
-    it('Aparição de modal', async () => {    
+    it('Clique no botão', async () => {    
         const user = userEvent.setup()
-        const newPaintingButton = screen.getByText('Iniciar Pintura')
+        const TestButton = screen.getByText('Realizar testes');
+        expect(TestButton).toBeTruthy()
     
-        await user.click(newPaintingButton)
-        const labelElement = screen.getByText('Preparando robô');
+        await user.click(TestButton)
+        const labelElement = screen.getByText('Compressor');
         expect(labelElement).toBeTruthy();
         
     });
 
 })
-
