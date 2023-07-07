@@ -1,5 +1,5 @@
-export const MQTT_URL = 'ws://192.168.1.101:9883';
-// export const MQTT_URL = 'wss://test.mosquitto.org:8081';
+// export const MQTT_URL = 'ws://192.168.1.101:9883';
+export const MQTT_URL = 'ws://test.mosquitto.org:8081';
 
 
 export const mqttTopics = {
