@@ -9,7 +9,7 @@ import {
 
 interface Props {
   label: string;
-  value: number | string;
+  value: number | string | null;
 }
 
 const HeightInput: React.FC<Props> = ({ label, value }) => (
