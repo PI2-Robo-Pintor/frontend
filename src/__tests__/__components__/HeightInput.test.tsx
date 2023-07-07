@@ -39,33 +39,4 @@ describe('Componente HeightInput', () => {
     expect(handleChangeValueValue).toBe(50);
   });
 
-  it.skip('Navega para nova pintura quando o botão é pressionado', async () => {
-    const navigateMock = vi.fn();
-    // useNavigate.mockImplementation(() => navigateMock);
-
-    render(
-      <MemoryRouter>
-        <HeightInput label="Height" value={0} onChangeValue={() => {}} typeHeight="max-height" />
-      </MemoryRouter>
-    );
-
-    // const controlButton = screen.getByTestId('ControlButton');
-    // fireEvent.click(controlButton);
-    // expect(controlButton).toHaveBeenCalled();
-    // expect(window.location.pathname).toBe('/new-painting/max-height');
-
-    const homeIcon = screen.getByRole('button');
-    fireEvent.click(homeIcon);
-    // expect(window.location.pathname).toBe('/new-painting/max-height');
-    expect(homeIcon).toHaveBeenCalled();
-
-
-    // expect(navigateMock).toHaveBeenCalledWith('/new-painting/cm');
-
-    const user = userEvent.setup();
-
-    // await user.click(homeIcon);
-    // expect(screen.getByText('Altura Máxima')).toBeInTheDocument()
-  });
-
 });
