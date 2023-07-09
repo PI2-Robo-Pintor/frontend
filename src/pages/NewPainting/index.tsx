@@ -12,6 +12,7 @@ import { Device, OnOffEnum, PublishEnum, RelayData, RobotData, RobotDataType, mq
 import { PublishData } from '../../settings/mqttSettings';
 import Swal, { SweetAlertResult } from 'sweetalert2';
 import { confirmDialog } from '../../utils/dialogs';
+import { MAX_HEIGHT, MIN_HEIGHT } from '../../constants';
 
 
 const NewPainting: React.FC= () => {
@@ -47,7 +48,7 @@ const NewPainting: React.FC= () => {
 			handleFunction: startPainting
 		})
 
-		const result: SweetAlertResult = 
+		const result: SweetAlertResult =
 		{
 			isConfirmed: true,
 			isDenied: false,
@@ -56,17 +57,16 @@ const NewPainting: React.FC= () => {
 		}
 
 		mqttSubscribe({
-            topic: mqttTopics.data,
+			topic: mqttTopics.data,
 			device: Device.ROBOT_DATA,
-            callback: (params) => {
-                const data: RobotData = params;
+			callback: (params) => {
+				const data: RobotData = params;
 
 				if(data.type === RobotDataType.RDT_READY){
 					Swal.close(result)
 				}
-				
-            }
-        });
+			}
+		});
 	}
 
 	const handleClick = () => {
@@ -90,7 +90,7 @@ const NewPainting: React.FC= () => {
 			topic: mqttTopics.general,
 			message: {
 				type: PublishEnum.MAX_HEIGHT,
-				value: maxHeight
+				value: maxHeight > MAX_HEIGHT ? MAX_HEIGHT : maxHeight
 			}
 		})
 
@@ -98,7 +98,7 @@ const NewPainting: React.FC= () => {
 			topic: mqttTopics.general,
 			message: {
 				type: PublishEnum.MIN_HEIGHT,
-				value: minHeight
+				value: minHeight < MIN_HEIGHT ? MIN_HEIGHT : minHeight
 			}
 		})
 
@@ -114,7 +114,7 @@ const NewPainting: React.FC= () => {
 
 	}
 
-	const isDisabled = () => minHeight > maxHeight;
+	const isDisabled = () => minHeight >= maxHeight;
 
 	return (
 		<Container>
