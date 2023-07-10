@@ -11,7 +11,7 @@ import { MqttContext } from '../../contexts/MqttContext';
 import { Device, OnOffEnum, PublishEnum, RelayData, RobotData, RobotDataType, mqttTopics } from '../../settings/mqttSettings';
 import { PublishData } from '../../settings/mqttSettings';
 import Swal, { SweetAlertResult } from 'sweetalert2';
-import { confirmDialog } from '../../utils/dialogs';
+import { statusDialog } from '../../utils/dialogs';
 import { MAX_HEIGHT, MIN_HEIGHT } from '../../constants';
 
 
@@ -43,7 +43,7 @@ const NewPainting: React.FC= () => {
 	}
 
 	const openModal = () => {
-		confirmDialog({
+		statusDialog({
 			title: 'Preparando robô',
 			handleFunction: startPainting
 		})

@@ -5,9 +5,10 @@ import Title from '../../components/Title';
 import InfoComponent from '../../components/InfoComponent';
 import { UserContext } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
-import { optionDialog } from '../../utils/dialogs';
+import { optionDialog, successDialog } from '../../utils/dialogs';
 import { MqttContext } from '../../contexts/MqttContext';
 import { PressureData, StepMotorData, StepMotorDataType, mqttTopics, Device, RelayData, PublishEnum, OnOffEnum, RobotData, RobotDataType } from '../../settings/mqttSettings';
+import Swal, { SweetAlertResult } from 'sweetalert2';
 
 const OngoingPainting: React.FC= () => {
 	const { 
@@ -31,7 +32,22 @@ const OngoingPainting: React.FC= () => {
 				const data: RobotData = params;
 
 				if(data.type === RobotDataType.RDT_DONE){
-					navigate('/new-painting');
+					successDialog({
+						title: 'Ciclo finalizado com sucesso!',
+						handleFunction: () => navigate('/new-painting')
+					});
+
+					const result: SweetAlertResult =
+					{
+						isConfirmed: true,
+						isDenied: false,
+						isDismissed: false,
+						value: true
+					};
+
+					setTimeout(() => {
+						Swal.close(result)
+					}, 3000);
 				}
 			}
 		});
