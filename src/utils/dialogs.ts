@@ -1,18 +1,13 @@
 import Swal, { SweetAlertIcon } from "sweetalert2"
 import defaultColors from '../settings/defaultSettings';
 
-interface OptionProps {
+interface DialogProps {
     title: string;
     handleFunction: () => void;
 }
 
-interface ConfirmProps {
-    title: string;
-    handleFunction: () => void;
 
-}
-
-export const optionDialog = (props : OptionProps) => {
+export const optionDialog = (props : DialogProps) => {
     Swal.fire({
         title: props.title,
         showCancelButton: true,
@@ -29,8 +24,7 @@ export const optionDialog = (props : OptionProps) => {
     })
 };
 
-export const confirmDialog = (props : ConfirmProps) => {
-
+export const statusDialog = (props : DialogProps) => {
     Swal.fire({
         title: props.title,
         width: 350,
@@ -44,3 +38,18 @@ export const confirmDialog = (props : ConfirmProps) => {
     })
     Swal.showLoading()
 };
+
+export const successDialog = (props: DialogProps) => {
+    Swal.fire({
+        icon: 'success',
+        title: props.title,
+        width: 350,
+        showCancelButton: false, 
+        showConfirmButton: false,
+        allowOutsideClick: false,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            props.handleFunction()
+        }
+    })
+}

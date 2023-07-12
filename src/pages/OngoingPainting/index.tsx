@@ -5,9 +5,10 @@ import Title from '../../components/Title';
 import InfoComponent from '../../components/InfoComponent';
 import { UserContext } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
-import { optionDialog } from '../../utils/dialogs';
+import { optionDialog, successDialog } from '../../utils/dialogs';
 import { MqttContext } from '../../contexts/MqttContext';
-import { PressureData, StepMotorData, StepMotorDataType, mqttTopics, Device, RelayData, PublishEnum, OnOffEnum } from '../../settings/mqttSettings';
+import { PressureData, StepMotorData, StepMotorDataType, mqttTopics, Device, RelayData, PublishEnum, OnOffEnum, RobotData, RobotDataType } from '../../settings/mqttSettings';
+import Swal, { SweetAlertResult } from 'sweetalert2';
 
 const OngoingPainting: React.FC= () => {
 	const { 
@@ -24,41 +25,68 @@ const OngoingPainting: React.FC= () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-        mqttSubscribe({
-            topic: mqttTopics.data,
-			device: Device.D_STEP_MOTOR,
-            callback: (params) => {
-                const data: StepMotorData = params;
-				if(data.type === StepMotorDataType.SMDT_POSITION){
-					setCurrentPosition(data.value);
+		mqttSubscribe({
+			topic: mqttTopics.data,
+			device: Device.ROBOT_DATA,
+			callback: (params) => {
+				const data: RobotData = params;
+
+				if(data.type === RobotDataType.RDT_DONE){
+					successDialog({
+						title: 'Ciclo finalizado com sucesso!',
+						handleFunction: () => navigate('/new-painting')
+					});
+
+					const result: SweetAlertResult =
+					{
+						isConfirmed: true,
+						isDenied: false,
+						isDismissed: false,
+						value: true
+					};
+
+					setTimeout(() => {
+						Swal.close(result)
+					}, 3000);
 				}
-				console.log('motor')
-				console.log(data)
-            }
-        });
+			}
+		});
 
 		mqttSubscribe({
-            topic: mqttTopics.data,
+			topic: mqttTopics.data,
+			device: Device.D_STEP_MOTOR,
+			callback: (params) => {
+				const data: StepMotorData = params;
+					if(data.type === StepMotorDataType.SMDT_POSITION){
+						setCurrentPosition(data.value);
+					}
+				console.log('motor')
+				console.log(data)
+			}
+		});
+
+		mqttSubscribe({
+			topic: mqttTopics.data,
 			device: Device.D_PRESSURE,
-            callback: (params) => {
-                const data: PressureData = params;
+			callback: (params) => {
+				const data: PressureData = params;
 				setPressure(data.value);
 				console.log('pressure')
 				console.log(data)
-            }
-        });
+			}
+		});
 
 		mqttSubscribe({
-            topic: mqttTopics.data,
+			topic: mqttTopics.data,
 			device: Device.D_RELAY,
-            callback: (params) => {
-                const data: RelayData = params;
+			callback: (params) => {
+				const data: RelayData = params;
 				// setPressure(data.value);
 				console.log('relay')
 				console.log(data)
-            }
-        });
-    }, [])
+			}
+		});
+	}, [])
 
 
 	const {mqttPublish} = useContext(MqttContext);
