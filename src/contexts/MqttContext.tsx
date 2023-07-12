@@ -17,6 +17,7 @@ interface MqttPublishProps {
 interface MqttContextData {
     mqttSubscribe: (props: MqttSubscribeProps) => void;
     mqttPublish: (props: MqttPublishProps) => Promise<void>;
+    isConnected: boolean;
 }
 
 interface MqttProviderProps{
@@ -27,6 +28,7 @@ export const MqttContext = createContext({} as MqttContextData);
 
 export function MqttProvider({ children }: MqttProviderProps){
     // const [client, setClient] = useState<any>();
+    const [isConnected, setIsConnected] = useState<boolean>(false);
 
     let clientMqtt: any;
 
@@ -37,6 +39,8 @@ export function MqttProvider({ children }: MqttProviderProps){
     const mqttConnect = async () => {
         clientMqtt = mqttClient().with_websock(MQTT_URL).with_autoreconnect();
         await clientMqtt.connect();
+
+        setIsConnected(true);
         
         // setClient(clientMqtt)
     };
@@ -74,7 +78,8 @@ export function MqttProvider({ children }: MqttProviderProps){
     return(
         <MqttContext.Provider value={{
             mqttPublish,
-            mqttSubscribe
+            mqttSubscribe,
+            isConnected,
         }}>
             {children}
         </MqttContext.Provider>
