@@ -20,8 +20,8 @@ interface UserProviderProps{
 export const UserContext = createContext({} as UserContextData);
 
 export function UserProvider({ children }: UserProviderProps){
-    const [maxHeight, setMaxHeight] = useState(10);
-    const [minHeight, setMinHeight] = useState(10);
+    const [maxHeight, setMaxHeight] = useState(60);
+    const [minHeight, setMinHeight] = useState(50);
     const [paintOption, setPaintOption] = useState(paintOptions[0].value);
 
     return(
