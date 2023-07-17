@@ -20,7 +20,7 @@ interface Props {
 const HeightInput: React.FC<Props> = ({ label, value, onChangeValue, typeHeight }) => {
   const navigate = useNavigate();
 
-  const { 
+  const {
 		maxHeight,
 		minHeight,
 	} = useContext(UserContext);
