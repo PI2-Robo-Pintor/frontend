@@ -27,8 +27,9 @@ const HeightInput: React.FC<Props> = ({ label, value, onChangeValue, typeHeight 
 
   return(
     <Container>
-      <Label>{label}</Label>
+      <Label htmlFor="height-input">{label}</Label>
       <InputBox
+        id="height-input"
         value={value}
         maxLength={3}
         onChange={(e) => onChangeValue(+e.target.value)}
